@@ -7,147 +7,24 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://AliAhmadi2004.ir/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Sun, 31 Dec 2023 04:56:00 -0800</lastBuildDate>
+      <lastBuildDate>Thu, 08 Feb 2024 00:00:00 -0800</lastBuildDate>
       <item>
-          <title>avatar.png</title>
-          <pubDate>Sun, 31 Dec 2023 04:56:00 -0800</pubDate>
+          <title>Docker for developers</title>
+          <pubDate>Thu, 08 Feb 2024 00:00:00 -0800</pubDate>
           <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/avatar-png/</link>
-          <guid>https://AliAhmadi2004.ir/posts/avatar-png/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/avatar-png/">&lt;p&gt;No, not that Avatar. And not the other one either. This post is about
-&lt;code&gt;avatar.png&lt;&#x2F;code&gt;, a handful of lines of PHP that have inspired me for a long time.&lt;&#x2F;p&gt;
-&lt;p&gt;Around 2011 or 2012 a friend of mine, &lt;a href=&quot;https:&#x2F;&#x2F;andrew.kvalhe.im&#x2F;&quot;&gt;Andrew Kvalheim&lt;&#x2F;a&gt;, blew
-my mind when he made his Skype profile picture display the IP address of the
-computer I was using. It might have looked a bit like this.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>Parsing TFTP in Rust</title>
-          <pubDate>Sat, 31 Dec 2022 16:45:00 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/parsing-tftp-in-rust/</link>
-          <guid>https://AliAhmadi2004.ir/posts/parsing-tftp-in-rust/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/parsing-tftp-in-rust/">&lt;p&gt;Several years ago I did a take-home interview which asked me to write a &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Trivial_File_Transfer_Protocol&quot;&gt;TFTP&lt;&#x2F;a&gt;
-server in &lt;a href=&quot;https:&#x2F;&#x2F;go.dev&#x2F;&quot;&gt;Go&lt;&#x2F;a&gt;. The job wasn&#x27;t the right fit for me, but I enjoyed the
-assignment. Lately, in my spare time, I&#x27;ve been tinkering with a &lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&#x2F;&quot;&gt;Rust&lt;&#x2F;a&gt;
-implementation. Here&#x27;s what I&#x27;ve done to parse the protocol.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>A Fresh Coat of Paint</title>
-          <pubDate>Fri, 31 Dec 2021 21:04:00 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/a-fresh-coat-of-paint/</link>
-          <guid>https://AliAhmadi2004.ir/posts/a-fresh-coat-of-paint/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/a-fresh-coat-of-paint/">&lt;p&gt;I&#x27;m starting the new year with a new job. To paraphrase a friend, &amp;quot;it&#x27;s just
-moving from one &lt;code&gt;$BIGCORP&lt;&#x2F;code&gt; to another&amp;quot;, but it&#x27;s still exciting. I worked my
-last gig for 5 years, so I&#x27;m nervous, but also very ready to do something new.
-While I&#x27;m doing one new thing I might as well do another. Taking some time off
-between jobs has given me enough breathing room to redo my website.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>node.example.com Is An IP Address</title>
-          <pubDate>Mon, 28 Dec 2020 06:13:05 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/node-example-com-is-an-ip-address/</link>
-          <guid>https://AliAhmadi2004.ir/posts/node-example-com-is-an-ip-address/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/node-example-com-is-an-ip-address/">&lt;p&gt;Hello! Welcome to the once-yearly blog post! This year I&#x27;d like to examine the
-most peculiar bug I encountered at work. To set the stage, let&#x27;s start with a
-little background.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>Deprecating Layabout</title>
-          <pubDate>Tue, 31 Dec 2019 17:29:00 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/deprecating-layabout/</link>
-          <guid>https://AliAhmadi2004.ir/posts/deprecating-layabout/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/deprecating-layabout/">&lt;p&gt;Since &lt;a href=&quot;https:&#x2F;&#x2F;layabout.readthedocs.io&#x2F;en&#x2F;latest&quot;&gt;Layabout&lt;&#x2F;a&gt; launched last year it has been downloaded 5,755 times, gotten
-16 stars on GitHub, been used by a Portuguese startup to teach a
-&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ricardojusto&#x2F;haskell-workshop&#x2F;blob&#x2F;f96aa901700d0b10dad35f391a94017f502fb42a&#x2F;s01&#x2F;e10&#x2F;bot&#x2F;receive&quot;&gt;Haskell workshop&lt;&#x2F;a&gt;, and received a &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;roach&#x2F;status&#x2F;1019279698092744705&quot;&gt;Twitter shout-out&lt;&#x2F;a&gt; from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;roach&quot;&gt;@roach&lt;&#x2F;a&gt;, one of
-the core contributors to the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;slackapi&#x2F;python-slackclient&quot;&gt;official Python Slack client&lt;&#x2F;a&gt;. During that time the
-official client library also got a &lt;strong&gt;lot&lt;&#x2F;strong&gt; better! So much better, in fact,
-that I&#x27;ve decided to deprecate Layabout.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>Announcing Layabout</title>
-          <pubDate>Sat, 30 Jun 2018 00:16:52 -0700</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/announcing-layabout/</link>
-          <guid>https://AliAhmadi2004.ir/posts/announcing-layabout/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/announcing-layabout/">&lt;p&gt;Today I&#x27;m announcing &lt;a href=&quot;https:&#x2F;&#x2F;layabout.readthedocs.io&#x2F;en&#x2F;latest&#x2F;&quot;&gt;Layabout&lt;&#x2F;a&gt;, my first official Python library. Layabout is
-a small event handling library on top of the
-&lt;a href=&quot;https:&#x2F;&#x2F;api.slack.com&#x2F;rtm&quot;&gt;Slack Real Time Messaging (RTM) API&lt;&#x2F;a&gt;. You can get it right now
-on &lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;layabout&quot;&gt;PyPI&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>Resolving A DNS Issue</title>
-          <pubDate>Sun, 24 Jun 2018 13:21:00 -0700</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/resolving-a-dns-issue/</link>
-          <guid>https://AliAhmadi2004.ir/posts/resolving-a-dns-issue/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/resolving-a-dns-issue/">&lt;p&gt;Haha. Get it? &lt;em&gt;Resolving&lt;&#x2F;em&gt; a DNS issue. OK, that was bad. You don&#x27;t have to read
-anymore, but I&#x27;m &lt;code&gt;SOA&lt;&#x2F;code&gt; into this. You might even say I&#x27;m in the zone. I think
-it&#x27;s gonna be &lt;code&gt;A&lt;&#x2F;code&gt; great read, so consider sticking around, &#x27;cuz there&#x27;s no
-TLD;R.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>Stateful Callbacks in Python</title>
-          <pubDate>Mon, 10 Jul 2017 07:54:00 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/stateful-callbacks-in-python/</link>
-          <guid>https://AliAhmadi2004.ir/posts/stateful-callbacks-in-python/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/stateful-callbacks-in-python/">&lt;p&gt;If you&#x27;re unfamiliar with what a callback is, don&#x27;t worry, we can sort that out
-quickly. If callbacks are old hat for you you might want to skip to
-&lt;a href=&quot;https:&#x2F;&#x2F;AliAhmadi2004.ir&#x2F;posts&#x2F;stateful-callbacks-in-python&#x2F;#stateful-callbacks&quot;&gt;the interesting bit&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;Simply put, a callback is a function that is passed as an argument to
-another function which may execute it.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>gutenberg init blog</title>
-          <pubDate>Sun, 18 Jun 2017 15:17:00 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/gutenberg-init-blog/</link>
-          <guid>https://AliAhmadi2004.ir/posts/gutenberg-init-blog/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/gutenberg-init-blog/">&lt;p&gt;When I first created this site I wanted to get it live as quickly as possible.
-&lt;a href=&quot;https:&#x2F;&#x2F;hexo.io&#x2F;&quot;&gt;Hexo&lt;&#x2F;a&gt;, a blogging framework written in Node.js, seemed like the perfect
-tool. At the time I was rather interested in Node.js, so it seemed natural to
-use a framework rooted in that community.&lt;&#x2F;p&gt;
-&lt;p&gt;By the time of my last post I&#x27;d become increasingly disinterested in Node.js
-and much more interested in Rust and its community. It was mostly
-procrastination, but I convinced myself that using a tool written in a language
-I didn&#x27;t use often directly contributed to the paucity of posts here, so I
-finally decided to ditch Hexo.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>git filter-wat</title>
-          <pubDate>Thu, 07 Apr 2016 16:06:33 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/git-filter-wat/</link>
-          <guid>https://AliAhmadi2004.ir/posts/git-filter-wat/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/git-filter-wat/">&lt;p&gt;Welcome to this year&#x27;s annual blog post!&lt;&#x2F;p&gt;
-&lt;p&gt;I&#x27;ve been signing &lt;code&gt;git&lt;&#x2F;code&gt; commits for my &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;reillysiemens&#x2F;dotfiles&quot;&gt;dotfiles&lt;&#x2F;a&gt; repository since its
-inception in October of last year, so I was excited to see that GitHub recently
-added &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;blog&#x2F;2144-gpg-signature-verification&quot;&gt;GPG signature verification&lt;&#x2F;a&gt;. All you have to do is upload your
-&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;reillysiemens.gpg&quot;&gt;public key&lt;&#x2F;a&gt; to GitHub and you&#x27;ll be verifying commits like a champ. Or so I
-thought…&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>hexo init blog</title>
-          <pubDate>Fri, 24 Apr 2015 01:57:13 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/hexo-init-blog/</link>
-          <guid>https://AliAhmadi2004.ir/posts/hexo-init-blog/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/hexo-init-blog/">&lt;p&gt;I&#x27;ve been wanting to start a blog for a long time now. Today I&#x27;m pulling the
-trigger on that with a simple &lt;code&gt;hexo init blog&lt;&#x2F;code&gt;. Well, it wasn&#x27;t &lt;em&gt;that&lt;&#x2F;em&gt; simple,
-so I feel like it&#x27;s worth talking about a few of the complications I had.&lt;&#x2F;p&gt;
+          <link>https://AliAhmadi2004.ir/posts/docker-for-developers/</link>
+          <guid>https://AliAhmadi2004.ir/posts/docker-for-developers/</guid>
+          <description xml:base="https://AliAhmadi2004.ir/posts/docker-for-developers/">&lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#282828;color:#fdf4c1aa;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;package &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;main
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;fmt
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8ec07c;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;fmt&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b8bb26;&quot;&gt;&amp;quot;Hello world&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;Dockerfile&quot; style=&quot;background-color:#282828;color:#fdf4c1aa;&quot; class=&quot;language-Dockerfile &quot;&gt;&lt;code class=&quot;language-Dockerfile&quot; data-lang=&quot;Dockerfile&quot;&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span&gt; golang:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8ec07c;&quot;&gt;latest
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;RUN &lt;&#x2F;span&gt;&lt;span&gt;apt-get update
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 </description>
       </item>
     </channel>
