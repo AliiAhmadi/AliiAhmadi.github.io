@@ -1,0 +1,108 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><title>git filter-wat</title><meta content="Ali Ahmadi" name=author><meta content="Fighting git filter-branch and GPG." name=description><meta content=AliAhmadi2004.ir property=og:site_name><meta content=en-us property=og:locale><meta content=https://AliAhmadi2004.ir/posts/git-filter-wat/ property=og:url><meta content="git filter-wat" property=og:title><meta content="Fighting git filter-branch and GPG." property=og:description><meta content=article property=og:type><meta content="Ali Ahmadi" property=og:article:author><meta content=2016-04-07T16:06:33-08:00 property=og:article:published_time><meta content=Posts property=og:article:section><meta content=GitHub property=og:article:tag><meta content=PGP property=og:article:tag><meta content=Git property=og:article:tag><link href=https://fonts.googleapis.com/ rel=dns-prefetch><link href=/site.css rel=stylesheet><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml><link href=https://AliAhmadi2004.ir/posts/git-filter-wat/ rel=canonical><body><div class=center><img alt=Me src=/self.jpg width=100></div><main><article id=content><header><h1>git filter-wat</h1><div class=post-meta><time datetime=2016-04-07T16:06:33-08:00>2016-04-07</time><span class=accent> ⬡ </span><a href=https://AliAhmadi2004.ir/tags/github/>#GitHub</a>, <a href=https://AliAhmadi2004.ir/tags/pgp/>#PGP</a>, <a href=https://AliAhmadi2004.ir/tags/git/>#Git</a></div></header><p>Welcome to this year's annual blog post!<p>I've been signing <code>git</code> commits for my <a href=https://github.com/reillysiemens/dotfiles>dotfiles</a> repository since its inception in October of last year, so I was excited to see that GitHub recently added <a href=https://github.com/blog/2144-gpg-signature-verification>GPG signature verification</a>. All you have to do is upload your <a href=https://github.com/reillysiemens.gpg>public key</a> to GitHub and you'll be verifying commits like a champ. Or so I thought…</p><span id=continue-reading></span><figure><img alt="Signature Doesn't Match Committer" src=signature-doesnt-match-committer.png><figcaption>Unverified commits on GitHub. <a href=signature-doesnt-match-committer.png>View full size.</a></figcaption></figure><p>GitHub thinks I'm unverified. I think that's some baloney. I <em>know</em> the public key I uploaded matches the private key I used to sign those commits. Oh, it looks like what they're really concerned about though is that the email on my PGP key doesn't match the email I used with <code>git</code>.<pre style=background:#282828;color:#fdf4c1aa><code><span>commit 7d74300ee1cd9c2f17a39b143be331cad82fe464
+</span><span>Author: Reilly Tucker Siemens &LTreilly.siemens@gmail.com>
+</span><span>Date:   Sat Mar 5 15:10:18 2016 -0800
+</span><span>
+</span><span>    Add cookiecutter configuration.
+</span><span>
+</span><span>commit 672f175ba6db1be4f9714f7526c9ff6153c44a81
+</span><span>Author: Reilly Tucker Siemens &LTreilly.siemens@gmail.com>
+</span><span>Date:   Sat Feb 20 14:20:34 2016 -0800
+</span><span>
+</span><span>    Add Go to PATH. Make Virtualenv Wrapper config more flexible.
+</span></code></pre><p>Now, before we go any further I should point out I wouldn't be having any problems at all if my <code>user.email</code> matched my GPG key to begin with, but hindsight is 20/20. As it stands, I have a problem and I need to fix it. I need to modify the authorship of these commits to match the email in my GPG key.<h2 id=how-to-fix-it><a aria-label="Anchor link for: how-to-fix-it" href=#how-to-fix-it></a>How to Fix It</h2><p>I recently learned that <code>git</code> has a tool called <code>git filter-branch</code> that can be used to make significant and otherwise tedious modifications to <code>git</code> history. A quick trip to Stack Overflow reveals I can use this tool to <a href=https://stackoverflow.com/questions/750172/change-the-author-of-a-commit-in-git>change the authorship</a> of all the commits in my repository.<p>Reckless reading leads me to this potential solution.<pre class=language-bash data-lang=bash style=background:#282828;color:#fdf4c1aa><code class=language-bash data-lang=bash><span style=color:#fdf4c1>git filter-branch -f --env-filter </span><span style=color:#b8bb26>"GIT_AUTHOR_EMAIL='reilly@tuckersiemens.com'"</span><span style=color:#fdf4c1> HEAD
+</span></code></pre><figure><img alt=git-filter-wat src=git-filter-wat.png><figcaption>A royally screwed up commit log. <a href=git-filter-wat.png>View full size.</a></figcaption></figure><p>Oh. No. Something is <em>clearly</em> wrong. Looks more like <code>git filter-wat</code>.<h2 id=how-to-actually-fix-it><a aria-label="Anchor link for: how-to-actually-fix-it" href=#how-to-actually-fix-it></a>How to Actually Fix It</h2><p>To be honest, I half expected something like this to happen. With the previous command I was never asked to resign these commits. The text of my commit message has been clobbered with the PGP signature. How do I fix that?<p>Some advocate not signing individual commits and instead just <a href=https://stackoverflow.com/questions/13504983/retroactively-sign-git-commits>using a signed tag</a>, but I don't subscribe to that idea. I really want each individual commit to be signed.<p><a href=http://stackoverflow.com/a/31640257/3288364>Additional Stack Overflowing</a> (yes, that's a verb) indicates I can use <code>git filter-branch</code>'s <code>--msg-filter</code> and <code>--commit-filter</code> options to strip the PGP signature from the commit message and then resign each commit. This ends up looking like<pre class=language-bash data-lang=bash style=background:#282828;color:#fdf4c1aa><code class=language-bash data-lang=bash><span style=color:#fdf4c1>git filter-branch -f --env-filter </span><span style=color:#b8bb26>"GIT_AUTHOR_EMAIL='reilly@tuckersiemens.com'"</span><span style=color:#fdf4c1> --msg-filter </span><span style=color:#b8bb26>'sed "/iQIcBA.*/,/.*END PGP SIGNATURE.*/d"'</span><span style=color:#fdf4c1> --commit-filter </span><span style=color:#b8bb26>'git commit-tree -S "$@"'</span><span style=color:#fdf4c1> HEAD
+</span></code></pre><p>The <code>--msg-filter</code> uses a <code>sed</code> expression to match and delete the PGP signature up to the <code>END PGP SIGNATURE</code> bit. This leaves the rest of the commit object (basically just the message) intact. The modified object is then passed to the <code>git commit-tree</code> in the <code>--commit-filter</code> which then requires me to resign the commit.<p>Annoyingly, when I actually ran this command I had to sign <strong>each and every</strong> commit even though I had a <code>gpg-agent</code> running. If anyone can tell me how to avoid that in the future I'd love to know. Luckily it was only 15 commits, but I would find entering a passphrase any more than that rather aggravating.<p>At this point the unwieldly <code>git filter-branch</code> incantation has been uttered. Let's just double-check the modified commits with a quick <code>git log</code>.<pre style=background:#282828;color:#fdf4c1aa><code><span>commit 87051d659d16dbe037c9d61dbaaeea38e152a9ff
+</span><span>Author: Reilly Tucker Siemens &LTreilly@tuckersiemens.com>
+</span><span>Date:   Sat Mar 5 15:10:18 2016 -0800
+</span><span>
+</span><span>    Add cookiecutter configuration.
+</span><span>
+</span><span>commit c56aff44af574bca227587e0f12f5ce841afd2d0
+</span><span>Author: Reilly Tucker Siemens &LTreilly@tuckersiemens.com>
+</span><span>Date:   Sat Feb 20 14:20:34 2016 -0800
+</span><span>
+</span><span>    Add Go to PATH. Make Virtualenv Wrapper config more flexible.
+</span></code></pre><p><strong>Looks good to me!</strong> Notice that the email isn't the only thing that's changed. The commit hash is also completely different. These aren't modified commits, they're new git objects with the author, date, and commit message preserved. In order to get my changes up to GitHub I'll have to <code>git push --force origin master</code> to blow away my previous history. Most of the time this is probably a bad idea, but this repository exists just for me, so I feel comfortable taking the sledgehammer approach.<h2 id=back-to-square-one><a aria-label="Anchor link for: back-to-square-one" href=#back-to-square-one></a>Back to Square One</h2><figure><img alt="Signature Doesn't Match Committer" src=signature-doesnt-match-committer.png><figcaption>These commits are <em>still</em> unverified on GitHub. <a href=signature-doesnt-match-committer.png>View full size.</a></figcaption></figure><p>Well, that didn't change anything. What gives? What am I missing? How does GitHub expect this to work in the first place? New idea. What if I set my author email correctly from the get-go and create an entirely new signed commit?<pre class=language-bash data-lang=bash style=background:#282828;color:#fdf4c1aa><code class=language-bash data-lang=bash><span style=color:#fdf4c1>git config --global user.email reilly@tuckersiemens.com
+</span><span style=color:#fdf4c1>touch why-doesn</span><span style=color:#b8bb26>\'</span><span style=color:#fdf4c1>t-this-work.txt
+</span><span style=color:#fdf4c1>git add why-doesn</span><span style=color:#b8bb26>\'</span><span style=color:#fdf4c1>t-this-work.txt
+</span><span style=color:#fdf4c1>git commit -Sm </span><span style=color:#b8bb26>"Why doesn't this work?"
+</span><span style=color:#fdf4c1>git push --force origin master
+</span></code></pre><figure><img alt="Oh, but it does!" src=oh-but-it-does.png><figcaption>Oh, but it <em>does</em> work! <a href=oh-but-it-does.png>View full size.</a></figcaption></figure><p>Now I think I'm crazy. This works, but <em>why</em>? Something <strong>must</strong> be different, but what is it? Let's check the <code>git log</code> again.<pre style=background:#282828;color:#fdf4c1aa><code><span>commit 8f08abcef9f4126ca617b0247c52264a619b049c
+</span><span>Author: Reilly Tucker Siemens &LTreilly@tuckersiemens.com>
+</span><span>Date:   Thu Apr 7 01:12:27 2016 -0700
+</span><span>
+</span><span>    Why doesn't this work?
+</span></code></pre><p>How does that look any different from the commit messages above that <em>didn't</em> work? It doesn't <em>appear</em> to be any different, so let's take a deeper look. Borrowing from something I learned while reading the excellent <a href=http://gitimmersion.com/lab_11.html>Git Immersion</a> tutorial I made use of <code>git cat-file</code> to inspect the commit objects. Running <code>git cat-file -p 87051d6</code> shows the commit object for a commit that GitHub won't verify.<pre style=background:#282828;color:#fdf4c1aa><code><span>tree 8feaf4ea13ac445111d9213cd5f917085e381642
+</span><span>parent c56aff44af574bca227587e0f12f5ce841afd2d0
+</span><span>author Reilly Tucker Siemens &LTreilly@tuckersiemens.com> 1457219418 -0800
+</span><span>committer Reilly Tucker Siemens &LTreilly.siemens@gmail.com> 1457219418 -0800
+</span><span>gpgsig -----BEGIN PGP SIGNATURE-----
+</span><span> Version: GnuPG v1
+</span><span>
+</span><span> iQIcBAABAgAGBQJXBhWDAAoJEBtFjnx8sVSpqFoQAKAjWfQ7IfnnUHx/ZuBWdvQt
+</span><span> cWt7+LMMmp6OgjATRv8QGoY6GDarLVMNZjhsvtfym5HWrdWk9WhtDqA9EbiLTdhD
+</span><span> yFxWhIDVHjqWt5U7QkWWcIYDUhVJ/z8PShPfa9d0Vwjq+HPqziTwILYjoedqBqOr
+</span><span> cce8sxSG1GppAuOyiYzqBoVfOC1ko+egh8gsl9pwrMO345dBp5ZMXtyxv4a4v/7s
+</span><span> WhY2Ggf71EJ9YTWGBHe2FT8WEH5DjVZZpsFLRlO6BUklKf8PuUPDQVmpgx60L0qW
+</span><span> MBmqcw1ftx3vwTAL/foxmE8KkMi5xnIPtUYDdo6d3a2ZeUuWDJBnb+ZxENTLl1DS
+</span><span> rwYI/LKbJwZpMfegwnHaJFgBF7igM7poeP3pytN2qzXYRGyXkJPYYh8Di5/alaGt
+</span><span> rp0rtlJJ2tk2m+V9MiqrO8HJoZrt1Y5z/Pg+Fo1yJdB+97fjYJfjnQ7+nTIgkfoB
+</span><span> hQlIc/G+w194GEN1AO4P7CeCvXh3necNPKsUZw0BfXrRjEIKGb5Qrs31xY1AJtup
+</span><span> 8prxg4jV3EmKBzKng3E65QHTPAjQWl0FhdvI2Qd2ea+fpjSbTKRDSmdi8ghHb6C2
+</span><span> Q1azXowhVOoqodINE7wc4OpDsc9hLzCUdY1z8iBgMzsYxjSwJGerRpAWT8mjmoK1
+</span><span> Z1wjETnbqvu8FXuVgqpW
+</span><span> =CYyg
+</span><span> -----END PGP SIGNATURE-----
+</span><span>
+</span><span>
+</span><span>Add cookiecutter configuration.
+</span></code></pre><p>Running <code>git cat-file -p 8f08abc</code> shows the commit object for a commit GitHub will verify.<pre style=background:#282828;color:#fdf4c1aa><code><span>tree 4dd20b4bf0b143ef3b0ed73c7232b9cf3da669e5
+</span><span>parent 7d74300ee1cd9c2f17a39b143be331cad82fe464
+</span><span>author Reilly Tucker Siemens &LTreilly@tuckersiemens.com> 1460016747 -0700
+</span><span>committer Reilly Tucker Siemens &LTreilly@tuckersiemens.com> 1460016747 -0700
+</span><span>gpgsig -----BEGIN PGP SIGNATURE-----
+</span><span> Version: GnuPG v1
+</span><span>
+</span><span> iQIcBAABAgAGBQJXBhZrAAoJEBtFjnx8sVSpZkMP/jQk4lT+b0kpOj+VfvW3JREH
+</span><span> R5ghCTJneZTlQzZcgtvN2ztQXG3Unn2A0YpaoCWC6gve0uv3W75JbJ6//Jtm/udq
+</span><span> LP2iiZO8Pp7QdaEvGKL4c0nw/GgBYNicOcL61QWR1ymoK4d3FTGU3dEYMOOWN673
+</span><span> vR4DVvv2DGD2OO3VAjpXmznJBGER5k5dtQ5asScWfYej2hEXQfESrWCT1BiXtqxA
+</span><span> d/ge92C7t4zMFHs+LYdnXGoRYahQyCTfiIPaDQ9XdDREYMiA0dj6uahKWPhKzYnK
+</span><span> 89qXphF3PN1huJKN31eTANuiA2Pt3Swe/RYHOv+l8PcInFZWcmF7uQQ7Eivh+Hi7
+</span><span> lO9l7XR9qIiW9r9890V25F2ESTSxoHMpcZDyV9lTDUYEBJgsP6v1C4JG2CvYVkkL
+</span><span> vvqVb3CMldDdNvLnavFxmEmIPDNMDLrZR0s0yc5FdYBsADw0VG6QwG3j/IdSyOyH
+</span><span> t4QzlFqGelm5vUBiqmZxOJE90LRI4e2876ZI5VPYmJ49mPpU4qNkRMQvVZLwtqOe
+</span><span> mm616Ja5IEivM/1BKWIId9kTPB4/TzdgTRR6OJYwKcbdkiSdRIdhWbSe4c1VsTpd
+</span><span> YQ6zpzg63/Mm4N3I/4pNXY3AGOa4JtSttRtTjeLnXyStZ47AwthcTB6ioIgLGJQ7
+</span><span> 8tEpiPvkr127Mj6VeMFv
+</span><span> =AgDl
+</span><span> -----END PGP SIGNATURE-----
+</span><span>
+</span><span>Why doesn't this work?
+</span></code></pre><p><strong>Whoa.</strong> While this may have already been obvious to some of you I had no idea that git objects had separate authors and committers. GitHub was right all along. The email in my signature <em>doesn't</em> match the committer email. I'll bet I can leverage <code>git filter-branch</code> again to finally fix this.<h2 id=how-to-actually-actually-fix-it-a-k-a-tell-git-who-s-boss><a aria-label="Anchor link for: how-to-actually-actually-fix-it-a-k-a-tell-git-who-s-boss" href=#how-to-actually-actually-fix-it-a-k-a-tell-git-who-s-boss></a>How to Actually Actually Fix It (A.K.A Tell Git Who's Boss)</h2><p>Just as there is a <code>GIT_AUTHOR_EMAIL</code> environment variable to use in a filter, there is also a <code>GIT_COMMITTER_EMAIL</code>. Now I can simply<pre class=language-bash data-lang=bash style=background:#282828;color:#fdf4c1aa><code class=language-bash data-lang=bash><span style=color:#fdf4c1>git filter-branch -f --env-filter </span><span style=color:#b8bb26>"GIT_AUTHOR_EMAIL='reilly@tuckersiemens.com'; GIT_COMMITTER_EMAIL='reilly@tuckersiemens.com'"</span><span style=color:#fdf4c1> --msg-filter </span><span style=color:#b8bb26>'sed "/iQIcBA.*/,/.*END PGP SIGNATURE.*/d"'</span><span style=color:#fdf4c1> --commit-filter </span><span style=color:#b8bb26>'git commit-tree -S "$@"'</span><span style=color:#fdf4c1> HEAD
+</span></code></pre><p>and <em>voila!</em>, <code>git cat-file -p fd23e7c</code> shows a commit object with the correct author <strong>and</strong> commiter.<pre style=background:#282828;color:#fdf4c1aa><code><span>tree 8feaf4ea13ac445111d9213cd5f917085e381642
+</span><span>parent 244b168ef6fc8fb5aef6abf4a68426299c00e0f1
+</span><span>author Reilly Tucker Siemens &LTreilly@tuckersiemens.com> 1457219418 -0800
+</span><span>committer Reilly Tucker Siemens &LTreilly@tuckersiemens.com> 1457219418 -0800
+</span><span>gpgsig -----BEGIN PGP SIGNATURE-----
+</span><span> Version: GnuPG v1
+</span><span>
+</span><span> iQIcBAABAgAGBQJXBhuzAAoJEBtFjnx8sVSpXY4QAK5mkQbuAplY9e7FcwR5CB2Q
+</span><span> 7ZwgKBJccmkBxWaH6UTsrFJzMXBzpIXnkycUStGMD0tduNo/jxnK19QBPaDVuQ0C
+</span><span> oD6RIIgTEsuJ81IserBwILryr6G7MBWQp5qWbXrCztN+SAXg7S3Rh235S6t64HtW
+</span><span> FwZ8gBWz+tUhr9ysrOYEilXYDiltO5QRHrVbE0QBGV0FRVHgSlnUeChZaTiYT5+T
+</span><span> pHHBezipNqMTnbiRGyc8/yfrfD32YljSRrZKH4ly4sNdUklJKUraoaIZNojybk2f
+</span><span> DxZmXgvHlcfIJJO9WzL2KEoCpWMg8hQXM1CQf7u+98hBcWe/1J8E2Wt6mbo04r9J
+</span><span> uPYyerLoIgKqAKJj4CZeFCPOzl3N9OPQHTN1aamq6/td5E8MRTxf2vxHP2GS/vOX
+</span><span> yFNjBlxy63u1yBi6u79iKvdzjG933Z/MYONOAnSxHvk1Ka79lIh4G49Gk7AMUlON
+</span><span> IxJ/PRzf8CjTzz6jaoZQIHG+BkEHXIiT2YZRSNKA4vYyL/iKj9OmXK/0SeSDeELh
+</span><span> /4uByx37dgAYW9hZho3d2+BiW5pVsaDOUNLpStu+c4u31juZMlM5OkskvCpAI00a
+</span><span> /1F8s1LraG9GxEkyeWNnAm9wV4JWkBjSvfUraj2jeHdotkIpJ4FEOSXpm+wHySX0
+</span><span> wd1/IAJz3DesEmKlTIMW
+</span><span> =LZcd
+</span><span> -----END PGP SIGNATURE-----
+</span><span>
+</span><span>
+</span><span>Add cookiecutter configuration.
+</span></code></pre><p>Unfortunately, now the graph of my <code>git log</code> looks weird. I have double the commits!<figure><img alt="Messed Up Git Graph" src=messed-up-git-graph.png><figcaption>Not <em>quite</em> there yet. <a href=messed-up-git-graph.png>View full size.</a></figcaption></figure><h2 id=success><a aria-label="Anchor link for: success" href=#success></a>Success</h2><p>For the third time <a href=http://stackoverflow.com/a/7654880/3288364>Stack Overflow saves my bacon</a> and<pre class=language-bash data-lang=bash style=background:#282828;color:#fdf4c1aa><code class=language-bash data-lang=bash><span style=color:#fdf4c1>git update-ref -d refs/original/refs/heads/master
+</span></code></pre><p>cleans up my graph. Now I can force push to <code>origin master</code> <em>again</em> and everything will be right again.<figure><img alt="Verified Commits" src=verified-commits.png><figcaption>Verified commits on GitHub. Success! <a href=verified-commits.png>View full size.</a></figcaption></figure></article></main><footer><nav><a href=/>Home</a> ⬡ <a href=/posts>Posts</a> ⬡ <a href=/tags>Tags</a> ⬡ <a href=/contact>Contact</a></nav><p>© 2024 Ali Ahmadi ⬡ <a href=https://github.com/AliiAhmadi>Github</a></footer>
