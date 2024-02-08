@@ -2,19 +2,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
       <title>Ali Ahmadi</title>
-      <link>https://AliAhmadi2004.ir</link>
+      <link>https://aliiahmadi.github.io</link>
       <description>Ali Ahmadi personal blog.</description>
       <generator>Zola</generator>
       <language>en</language>
-      <atom:link href="https://AliAhmadi2004.ir/rss.xml" rel="self" type="application/rss+xml"/>
+      <atom:link href="https://aliiahmadi.github.io/rss.xml" rel="self" type="application/rss+xml"/>
       <lastBuildDate>Thu, 08 Feb 2024 00:00:00 -0800</lastBuildDate>
       <item>
           <title>Docker for developers</title>
           <pubDate>Thu, 08 Feb 2024 00:00:00 -0800</pubDate>
           <author>Unknown</author>
-          <link>https://AliAhmadi2004.ir/posts/docker-for-developers/</link>
-          <guid>https://AliAhmadi2004.ir/posts/docker-for-developers/</guid>
-          <description xml:base="https://AliAhmadi2004.ir/posts/docker-for-developers/">&lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#282828;color:#fdf4c1aa;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;package &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;main
+          <link>https://aliiahmadi.github.io/posts/docker-for-developers/</link>
+          <guid>https://aliiahmadi.github.io/posts/docker-for-developers/</guid>
+          <description xml:base="https://aliiahmadi.github.io/posts/docker-for-developers/">&lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#282828;color:#fdf4c1aa;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;package &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;main
 &lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;fmt
 &lt;&#x2F;span&gt;&lt;span&gt;

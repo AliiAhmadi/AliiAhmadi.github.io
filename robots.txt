@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://AliAhmadi2004.ir/sitemap.xml
+Sitemap: https://aliiahmadi.github.io/sitemap.xml
