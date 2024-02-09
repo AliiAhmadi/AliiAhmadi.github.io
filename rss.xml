@@ -14,17 +14,8 @@
           <author>Unknown</author>
           <link>https://aliiahmadi.github.io/posts/docker-for-developers/</link>
           <guid>https://aliiahmadi.github.io/posts/docker-for-developers/</guid>
-          <description xml:base="https://aliiahmadi.github.io/posts/docker-for-developers/">&lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#282828;color:#fdf4c1aa;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;package &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;main
-&lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;fmt
-&lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8ec07c;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
-&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;fmt&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fdf4c1;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b8bb26;&quot;&gt;&amp;quot;Hello world&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)
-&lt;&#x2F;span&gt;&lt;span&gt;}
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;pre data-lang=&quot;Dockerfile&quot; style=&quot;background-color:#282828;color:#fdf4c1aa;&quot; class=&quot;language-Dockerfile &quot;&gt;&lt;code class=&quot;language-Dockerfile&quot; data-lang=&quot;Dockerfile&quot;&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span&gt; golang:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8ec07c;&quot;&gt;latest
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa5c4b;&quot;&gt;RUN &lt;&#x2F;span&gt;&lt;span&gt;apt-get update
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+          <description xml:base="https://aliiahmadi.github.io/posts/docker-for-developers/">&lt;p&gt;The first step to start learning docker is to distinguish two word, &lt;code&gt;image&lt;&#x2F;code&gt; and &lt;code&gt;container&lt;&#x2F;code&gt;.
+By knowing them you can go deeper and learn some useful command to work with docker in your projects for development and also use it for easy deployment. Docker also has some advance concepts like &lt;code&gt;Docker Swarm&lt;&#x2F;code&gt; that it is an orchestration tool. You will also learn some basic knowledge about it in this post.&lt;&#x2F;p&gt;
 </description>
       </item>
     </channel>
