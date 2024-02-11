@@ -46,4 +46,14 @@
 </span><span>	}
 </span><span>	</span><span style=color:#fdf4c1>fmt</span><span>.</span><span style=color:#fdf4c1>Printf</span><span>(</span><span style=color:#b8bb26>"File content: </span><span style=color:#fdf4c1>%s</span><span style=color:#b8bb26>\n"</span><span>, </span><span style=color:#fdf4c1>readContent</span><span>)
 </span><span>}
-</span></code></pre><p>You can run the code from inside the container. But we have to find a better method because in this method the possibility of error is very high and also if the size of the project and the number of files are very large, then copying the files individually into the container is very difficult.</article></main><footer><nav><a href=/>Home</a> ⬡ <a href=/posts>Posts</a> ⬡ <a href=/tags>Tags</a> ⬡ <a href=/contact>Contact</a></nav><p>© 2024 Ali Ahmadi ⬡ <a href=https://github.com/AliiAhmadi>Github</a></footer>
+</span></code></pre><p>You can run the code from inside the container. But we have to find a better method because in this method the possibility of error is very high and also if the size of the project and the number of files are very large, then copying the files individually into the container is very difficult.<p>I have to summarize one point that you can create custom images by writing <code>Dockerfile</code> and building them. Here are some of the <code>Instructions</code> that you need to write <code>Dockerfile</code>:<pre class=language-diff data-lang=diff style=background:#282828;color:#fdf4c1aa><code class=language-diff data-lang=diff><span style=color:#fa5c4b>- FROM
+</span><span style=color:#fa5c4b>- WORKDIR
+</span><span style=color:#fa5c4b>- COPY
+</span><span style=color:#fa5c4b>- ADD
+</span><span style=color:#fa5c4b>- RUN
+</span><span style=color:#fa5c4b>- ENV
+</span><span style=color:#fa5c4b>- EXPOSE
+</span><span style=color:#fa5c4b>- USER
+</span><span style=color:#fa5c4b>- CMD
+</span><span style=color:#fa5c4b>- ENTRYPOINT
+</span></code></pre><p>Unfortunately, there is not enough space here to explain the <code>Dockerfile</code> and its <code>Instructions</code>, and you can refer to the main Docker <a href=https://docs.docker.com/engine/reference/builder/ rel=noopener target=_blank>document</a> for reading.</article></main><footer><nav><a href=/>Home</a> ⬡ <a href=/posts>Posts</a> ⬡ <a href=/tags>Tags</a> ⬡ <a href=/contact>Contact</a></nav><p>© 2024 Ali Ahmadi ⬡ <a href=https://github.com/AliiAhmadi>Github</a></footer>
