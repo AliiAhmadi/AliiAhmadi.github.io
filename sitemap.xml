@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://aliiahmadi.github.io/</loc>
+        <loc>https://lexurr.ir/</loc>
     </url>
     <url>
-        <loc>https://aliiahmadi.github.io/contact/</loc>
+        <loc>https://lexurr.ir/contact/</loc>
     </url>
     <url>
-        <loc>https://aliiahmadi.github.io/posts/</loc>
+        <loc>https://lexurr.ir/posts/</loc>
     </url>
     <url>
-        <loc>https://aliiahmadi.github.io/posts/docker-for-developers/</loc>
+        <loc>https://lexurr.ir/posts/docker-for-developers/</loc>
         <lastmod>2024-02-08T00:00:00-08:00</lastmod>
     </url>
     <url>
-        <loc>https://aliiahmadi.github.io/tags/</loc>
+        <loc>https://lexurr.ir/tags/</loc>
     </url>
     <url>
-        <loc>https://aliiahmadi.github.io/tags/docker/</loc>
+        <loc>https://lexurr.ir/tags/docker/</loc>
     </url>
     <url>
-        <loc>https://aliiahmadi.github.io/tags/golang/</loc>
+        <loc>https://lexurr.ir/tags/golang/</loc>
     </url>
     <url>
-        <loc>https://aliiahmadi.github.io/tags/swarm/</loc>
+        <loc>https://lexurr.ir/tags/swarm/</loc>
     </url>
 </urlset>

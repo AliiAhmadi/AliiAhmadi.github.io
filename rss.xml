@@ -2,19 +2,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
       <title>Ali Ahmadi</title>
-      <link>https://aliiahmadi.github.io</link>
+      <link>https://lexurr.ir</link>
       <description>Ali Ahmadi personal blog.</description>
       <generator>Zola</generator>
       <language>en</language>
-      <atom:link href="https://aliiahmadi.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+      <atom:link href="https://lexurr.ir/rss.xml" rel="self" type="application/rss+xml"/>
       <lastBuildDate>Thu, 08 Feb 2024 00:00:00 -0800</lastBuildDate>
       <item>
           <title>Docker for developers</title>
           <pubDate>Thu, 08 Feb 2024 00:00:00 -0800</pubDate>
           <author>Unknown</author>
-          <link>https://aliiahmadi.github.io/posts/docker-for-developers/</link>
-          <guid>https://aliiahmadi.github.io/posts/docker-for-developers/</guid>
-          <description xml:base="https://aliiahmadi.github.io/posts/docker-for-developers/">&lt;p&gt;The first step to start learning docker is to distinguish two word, &lt;code&gt;image&lt;&#x2F;code&gt; and &lt;code&gt;container&lt;&#x2F;code&gt;.
+          <link>https://lexurr.ir/posts/docker-for-developers/</link>
+          <guid>https://lexurr.ir/posts/docker-for-developers/</guid>
+          <description xml:base="https://lexurr.ir/posts/docker-for-developers/">&lt;p&gt;The first step to start learning docker is to distinguish two word, &lt;code&gt;image&lt;&#x2F;code&gt; and &lt;code&gt;container&lt;&#x2F;code&gt;.
 By knowing them you can go deeper and learn some useful command to work with docker in your projects for development and also use it for easy deployment. Docker also has some advance concepts like &lt;code&gt;Docker Swarm&lt;&#x2F;code&gt; that it is an orchestration tool. You will also learn some basic knowledge about it in this post.&lt;&#x2F;p&gt;
 </description>
       </item>
