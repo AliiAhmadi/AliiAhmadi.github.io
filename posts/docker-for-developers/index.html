@@ -56,4 +56,38 @@
 </span><span style=color:#fa5c4b>- USER
 </span><span style=color:#fa5c4b>- CMD
 </span><span style=color:#fa5c4b>- ENTRYPOINT
-</span></code></pre><p>Unfortunately, there is not enough space here to explain the <code>Dockerfile</code> and its <code>Instructions</code>, and you can refer to the main Docker <a href=https://docs.docker.com/engine/reference/builder/ rel=noopener target=_blank>document</a> for reading.</article></main><footer><nav><a href=/>Home</a> ⬡ <a href=/posts>Posts</a> ⬡ <a href=/tags>Tags</a> ⬡ <a href=/contact>Contact</a></nav><p>© 2024 Ali Ahmadi ⬡ <a href=https://github.com/AliiAhmadi>Github</a></footer>
+</span></code></pre><p>Unfortunately, there is not enough space here to explain the <code>Dockerfile</code> and its <code>Instructions</code>, but you can refer to the Docker <a href=https://docs.docker.com/engine/reference/builder/ rel=noopener target=_blank>document</a> for reading. Now let's create our own image, which includes the codes we need by default:<pre class=language-Dockerfile data-lang=Dockerfile style=background:#282828;color:#fdf4c1aa><code class=language-Dockerfile data-lang=Dockerfile><span style=font-style:italic;color:#928374>#Base image
+</span><span style=color:#fa5c4b>FROM</span><span> golang:</span><span style=color:#8ec07c>latest
+</span><span>
+</span><span style=color:#fa5c4b>WORKDIR </span><span>/opt/app
+</span><span>
+</span><span style=color:#fa5c4b>COPY</span><span> . .
+</span><span>
+</span><span style=color:#fa5c4b>RUN </span><span>go build -o app .
+</span><span>
+</span><span style=color:#fe8019>CMD </span><span>[</span><span style=color:#b8bb26>"bash"</span><span>]
+</span></code></pre><p>If we have the above <code>Dockerfile</code> in the main folder of our project, we can make our image so that our codes are automatically copied into the image. Let me explain the Docker instructions in the above file. In the first instruction, which is <code>FROM</code>, we determine what our initial image should be, which we will make changes to in the future instructions.<p>In the second instruction, <code>WORKDIR</code>, we determine where our starting point is in the file system of the containers that are created from this image. If this folder does not exist, it will be created.<p>The third instruction needs no explanation! Because our <code>Dockerfile</code> is located in the main folder of the project, the entire project is copied into the container and in the <code>WORKDIR</code> location that we specified.<p>In the fourth instruction, we compiled the project code and output it with the name <code>app</code>. In general, we can execute any command on the image with the <code>RUN</code> command. By executing each instruction, we actually add a layer to our image. Unfortunately, there is no place to explain <code>layers</code> and how to optimize them.<p>And finally, with the <code>CMD</code> instruction, we can specify a command that will always be executed when starting the execution of each container from this image (We can change this command when the container starts running).<p>Now we can create our image:<pre class=language-bash data-lang=bash style=background:#282828;color:#fdf4c1aa><code class=language-bash data-lang=bash><span style=color:#fdf4c1>docker build -t my-app:1.0.0 .
+</span></code></pre><p>But we usually do not do this. Because in most projects we have more than one service, we need several <code>Dockerfiles</code> to create the required images, which would be tedious to do manually. So, we have to write the <code>docker-compose.yml</code> file so that we can start and stop all the services we need at once. Of course, you need to install <code>docker-compose</code> before proceeding.<pre class=language-yaml data-lang=yaml style=background:#282828;color:#fdf4c1aa><code class=language-yaml data-lang=yaml><span style=font-weight:700;color:#8ec07c>version</span><span>: </span><span style=color:#b8bb26>'3'
+</span><span>
+</span><span style=font-weight:700;color:#8ec07c>services</span><span>:
+</span><span>  </span><span style=font-weight:700;color:#8ec07c>go</span><span>:
+</span><span>    </span><span style=font-weight:700;color:#8ec07c>build</span><span>: 
+</span><span>      </span><span style=font-weight:700;color:#8ec07c>dockerfile</span><span>: </span><span style=color:#b8bb26>Dockerfile
+</span><span>      </span><span style=font-weight:700;color:#8ec07c>context</span><span>: </span><span style=color:#d3869b>.
+</span><span>    </span><span style=font-weight:700;color:#8ec07c>volumes</span><span>:
+</span><span>      - </span><span style=color:#b8bb26>.:/opt/app
+</span><span>    </span><span style=font-weight:700;color:#8ec07c>container_name</span><span>: </span><span style=color:#b8bb26>golang-test
+</span><span>    </span><span style=font-weight:700;color:#8ec07c>stdin_open</span><span>: </span><span style=color:#d3869b>true
+</span><span>    </span><span style=font-weight:700;color:#8ec07c>tty</span><span>: </span><span style=color:#d3869b>true
+</span></code></pre><p>The syntax of the file is quite clear, so I will not give an explanation. Let me briefly explain about <code>volumes</code> that we can use them to <code>sync</code> files and data between containers and host machines.<p>Here I defined a <code>volume</code> from the current folder to the folder inside the container where I copied the project codes for easier development. Any change in either side will change the files in the other side and this is very good for when we are developing the project.<p>To run the services defined in the <code>docker-compose.yml</code> file, we must use <code>docker-compose</code>:<pre class=language-bash data-lang=bash style=background:#282828;color:#fdf4c1aa><code class=language-bash data-lang=bash><span style=color:#fdf4c1>docker-compose up -d
+</span></code></pre><p>And also to stop services at once:<pre class=language-bash data-lang=bash style=background:#282828;color:#fdf4c1aa><code class=language-bash data-lang=bash><span style=color:#fdf4c1>docker-compose down
+</span></code></pre><p>Finally, in order to run the project more easily without the need to manually connect to the container and run it, I will write a simple <code>Makefile</code>.<pre class=language-makefile data-lang=makefile style=background:#282828;color:#fdf4c1aa><code class=language-makefile data-lang=makefile><span style=color:#fdf4c1>.DEFAULT_GOAL </span><span style=color:#fe8019>:= </span><span style=color:#b8bb26>run
+</span><span>
+</span><span style=color:#8ec07c>run</span><span style=color:#fe8019>:
+</span><span>	</span><span style=color:#d3869b>@</span><span style=color:#fdf4c1>docker exec -it golang-test go run .
+</span><span>
+</span><span style=color:#8ec07c>fmt_vet</span><span style=color:#fe8019>:
+</span><span>	</span><span style=color:#d3869b>@</span><span style=color:#fdf4c1>docker exec -it golang-test go fmt ./... </span><span style=color:#fe8019>&& </span><span style=color:#fdf4c1>go vet ./...
+</span><span>
+</span><span style=color:#8ec07c>.PHONY</span><span style=color:#fe8019>: </span><span style=color:#b8bb26>run fmt_vet
+</span></code></pre><p>And that's it :)<p>I hope that I will be able to convey more content in the next articles. Thanks for reading 🤝.<p><img alt=golang src=https://lexurr.ir/posts/docker-for-developers/golang.png></article></main><footer><nav><a href=/>Home</a> ⬡ <a href=/posts>Posts</a> ⬡ <a href=/tags>Tags</a> ⬡ <a href=/contact>Contact</a></nav><p>© 2024 Ali Ahmadi ⬡ <a href=https://github.com/AliiAhmadi>Github</a></footer>
