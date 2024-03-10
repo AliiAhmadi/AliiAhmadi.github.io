@@ -7,16 +7,7 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://lexurr.ir/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Thu, 15 Feb 2024 12:50:00 -0800</lastBuildDate>
-      <item>
-          <title>Guide to building command line tools</title>
-          <pubDate>Thu, 15 Feb 2024 12:50:00 -0800</pubDate>
-          <author>Unknown</author>
-          <link>https://lexurr.ir/posts/guide-to-building-command-line-tools/</link>
-          <guid>https://lexurr.ir/posts/guide-to-building-command-line-tools/</guid>
-          <description xml:base="https://lexurr.ir/posts/guide-to-building-command-line-tools/">&lt;p&gt;In this article i want to start building a simple command line tool with best practices in &lt;code&gt;golang&lt;&#x2F;code&gt; and some other tools. As you know today many famous tools like &lt;code&gt;docker&lt;&#x2F;code&gt;, &lt;code&gt;kubernetes&lt;&#x2F;code&gt; and many other written in golang and all of them have have a powerful and standard command line interface for interact with its core. This indicate that &lt;code&gt;golang&lt;&#x2F;code&gt; is a good choice for building command line tools in large scale.&lt;&#x2F;p&gt;
-</description>
-      </item>
+      <lastBuildDate>Thu, 08 Feb 2024 00:00:00 -0800</lastBuildDate>
       <item>
           <title>Docker for developers</title>
           <pubDate>Thu, 08 Feb 2024 00:00:00 -0800</pubDate>
