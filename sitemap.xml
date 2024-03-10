@@ -10,11 +10,18 @@
         <loc>https://lexurr.ir/posts/</loc>
     </url>
     <url>
+        <loc>https://lexurr.ir/posts/concurrency-in-go/</loc>
+        <lastmod>2024-03-10T00:00:00-08:00</lastmod>
+    </url>
+    <url>
         <loc>https://lexurr.ir/posts/docker-for-developers/</loc>
         <lastmod>2024-02-08T00:00:00-08:00</lastmod>
     </url>
     <url>
         <loc>https://lexurr.ir/tags/</loc>
+    </url>
+    <url>
+        <loc>https://lexurr.ir/tags/concurrency/</loc>
     </url>
     <url>
         <loc>https://lexurr.ir/tags/docker/</loc>
@@ -23,6 +30,12 @@
         <loc>https://lexurr.ir/tags/golang/</loc>
     </url>
     <url>
+        <loc>https://lexurr.ir/tags/goroutine/</loc>
+    </url>
+    <url>
         <loc>https://lexurr.ir/tags/swarm/</loc>
+    </url>
+    <url>
+        <loc>https://lexurr.ir/tags/thread/</loc>
     </url>
 </urlset>

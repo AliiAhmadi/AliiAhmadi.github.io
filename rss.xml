@@ -7,7 +7,15 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://lexurr.ir/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Thu, 08 Feb 2024 00:00:00 -0800</lastBuildDate>
+      <lastBuildDate>Sun, 10 Mar 2024 00:00:00 -0800</lastBuildDate>
+      <item>
+          <title>Concurrency in Golang</title>
+          <pubDate>Sun, 10 Mar 2024 00:00:00 -0800</pubDate>
+          <author>Unknown</author>
+          <link>https://lexurr.ir/posts/concurrency-in-go/</link>
+          <guid>https://lexurr.ir/posts/concurrency-in-go/</guid>
+          <description xml:base="https://lexurr.ir/posts/concurrency-in-go/"></description>
+      </item>
       <item>
           <title>Docker for developers</title>
           <pubDate>Thu, 08 Feb 2024 00:00:00 -0800</pubDate>
