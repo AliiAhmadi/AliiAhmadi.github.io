@@ -9,12 +9,12 @@
       <atom:link href="https://lexurr.ir/rss.xml" rel="self" type="application/rss+xml"/>
       <lastBuildDate>Sun, 10 Mar 2024 00:00:00 -0800</lastBuildDate>
       <item>
-          <title>Concurrency in Golang</title>
+          <title>Concurrency problems</title>
           <pubDate>Sun, 10 Mar 2024 00:00:00 -0800</pubDate>
           <author>Unknown</author>
-          <link>https://lexurr.ir/posts/concurrency-in-go/</link>
-          <guid>https://lexurr.ir/posts/concurrency-in-go/</guid>
-          <description xml:base="https://lexurr.ir/posts/concurrency-in-go/"></description>
+          <link>https://lexurr.ir/posts/concurrency-problems/</link>
+          <guid>https://lexurr.ir/posts/concurrency-problems/</guid>
+          <description xml:base="https://lexurr.ir/posts/concurrency-problems/"></description>
       </item>
       <item>
           <title>Docker for developers</title>
