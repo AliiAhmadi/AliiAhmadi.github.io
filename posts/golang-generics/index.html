@@ -24,5 +24,54 @@
 </span><span style=color:#fa5c4b>func </span><span style=color:#8ec07c>AddStrings</span><span>(</span><span style=color:#fdf4c1>first</span><span>, </span><span style=color:#fdf4c1>second </span><span style=color:#fabd2f>string</span><span>) </span><span style=color:#fabd2f>string </span><span>{
 </span><span>	</span><span style=color:#fa5c4b>return </span><span style=color:#fdf4c1>first </span><span style=color:#fe8019>+ </span><span style=color:#fdf4c1>second
 </span><span>}
+</span></code></pre><p>If you want to create a function that can be used for all these types to sum them, we can use generics like the example below:<pre class=language-go data-lang=go style=background:#282828;color:#fdf4c1aa><code class=language-go data-lang=go><span style=color:#fa5c4b>package </span><span style=color:#fdf4c1>main
 </span><span>
+</span><span style=color:#fa5c4b>import </span><span style=color:#b8bb26>"fmt"
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#8ec07c>main</span><span>() {
+</span><span>	</span><span style=color:#fa5c4b>var </span><span style=color:#fdf4c1>n_1</span><span>, </span><span style=color:#fdf4c1>n_2 </span><span style=color:#fabd2f>int
+</span><span>	</span><span style=color:#fdf4c1>fmt</span><span>.</span><span style=color:#fdf4c1>Println</span><span>(</span><span style=color:#fdf4c1>Add</span><span>(</span><span style=color:#fdf4c1>n_1</span><span>, </span><span style=color:#fdf4c1>n_2</span><span>))
+</span><span>
+</span><span>	</span><span style=color:#fa5c4b>var </span><span style=color:#fdf4c1>f_1</span><span>, </span><span style=color:#fdf4c1>f_2 </span><span style=color:#fabd2f>float64
+</span><span>	</span><span style=color:#fdf4c1>fmt</span><span>.</span><span style=color:#fdf4c1>Println</span><span>(</span><span style=color:#fdf4c1>Add</span><span>(</span><span style=color:#fdf4c1>f_1</span><span>, </span><span style=color:#fdf4c1>f_2</span><span>))
+</span><span>
+</span><span>	</span><span style=color:#fa5c4b>var </span><span style=color:#fdf4c1>s_1</span><span>, </span><span style=color:#fdf4c1>s_2 </span><span style=color:#fabd2f>string
+</span><span>	</span><span style=color:#fdf4c1>fmt</span><span>.</span><span style=color:#fdf4c1>Println</span><span>(</span><span style=color:#fdf4c1>Add</span><span>(</span><span style=color:#fdf4c1>s_1</span><span>, </span><span style=color:#fdf4c1>s_2</span><span>))
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#fdf4c1>Add</span><span>[</span><span style=color:#fdf4c1>T int </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>float64 </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>string</span><span>](</span><span style=color:#fdf4c1>first</span><span>, </span><span style=color:#fdf4c1>second T</span><span>) </span><span style=color:#fdf4c1>T </span><span>{
+</span><span>	</span><span style=color:#fa5c4b>return </span><span style=color:#fdf4c1>first </span><span style=color:#fe8019>+ </span><span style=color:#fdf4c1>second
+</span><span>}
+</span></code></pre><p>After the function name, we should introduce a new type (here 'T') and specify the types that can be used for 'T'. We can create multiple generic types if needed.<p>If the number of supported types becomes extensive and it becomes unwieldy to list them all on one line, we can use an interface to represent those types.<pre class=language-go data-lang=go style=background:#282828;color:#fdf4c1aa><code class=language-go data-lang=go><span style=color:#fa5c4b>package </span><span style=color:#fdf4c1>main
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#8ec07c>main</span><span>() {
+</span><span>
+</span><span>	</span><span style=font-style:italic;color:#928374>// And we can utilize any of these types as both input and output for this function.
+</span><span>	</span><span style=font-style:italic;color:#928374>/*
+</span><span style=font-style:italic;color:#928374>	 * int
+</span><span style=font-style:italic;color:#928374>	 * uint
+</span><span style=font-style:italic;color:#928374>	 * int8
+</span><span style=font-style:italic;color:#928374>	 * uint8
+</span><span style=font-style:italic;color:#928374>	 * int16
+</span><span style=font-style:italic;color:#928374>	 * uint16
+</span><span style=font-style:italic;color:#928374>	 * int32
+</span><span style=font-style:italic;color:#928374>	 * uint32
+</span><span style=font-style:italic;color:#928374>	 * int64
+</span><span style=font-style:italic;color:#928374>	 * uint64
+</span><span style=font-style:italic;color:#928374>	 * float32
+</span><span style=font-style:italic;color:#928374>	 * float64
+</span><span style=font-style:italic;color:#928374>	 * string
+</span><span style=font-style:italic;color:#928374>	 */
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>type </span><span style=color:#8ec07c>Addable </span><span style=color:#fa5c4b>interface </span><span>{
+</span><span>	</span><span style=color:#fdf4c1>int </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>uint </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>int8 </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>uint8 </span><span style=color:#fe8019>|
+</span><span>		</span><span style=color:#fdf4c1>int16 </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>uint16 </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>int32 </span><span style=color:#fe8019>|
+</span><span>		</span><span style=color:#fdf4c1>uint32 </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>int64 </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>uint64 </span><span style=color:#fe8019>|
+</span><span>		</span><span style=color:#fdf4c1>float32 </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>float64 </span><span style=color:#fe8019>| </span><span style=color:#fabd2f>string
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#fdf4c1>Add</span><span>[</span><span style=color:#fdf4c1>T Addable</span><span>](</span><span style=color:#fdf4c1>first</span><span>, </span><span style=color:#fdf4c1>second T</span><span>) </span><span style=color:#fdf4c1>T </span><span>{
+</span><span>	</span><span style=color:#fa5c4b>return </span><span style=color:#fdf4c1>first </span><span style=color:#fe8019>+ </span><span style=color:#fdf4c1>second
+</span><span>}
 </span></code></pre></article></main><footer><nav><a href=/>Home</a> ⬡ <a href=/posts>Posts</a> ⬡ <a href=/tags>Tags</a> ⬡ <a href=/contact>Contact</a></nav><p>© 2024 Ali Ahmadi ⬡ <a href=https://github.com/AliiAhmadi>Github</a></footer>
