@@ -7,14 +7,15 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://lexurr.ir/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Sun, 10 Mar 2024 00:00:00 -0800</lastBuildDate>
+      <lastBuildDate>Mon, 18 Mar 2024 00:00:00 -0800</lastBuildDate>
       <item>
-          <title>Concurrency problems</title>
-          <pubDate>Sun, 10 Mar 2024 00:00:00 -0800</pubDate>
+          <title>Generics</title>
+          <pubDate>Mon, 18 Mar 2024 00:00:00 -0800</pubDate>
           <author>Unknown</author>
-          <link>https://lexurr.ir/posts/concurrency-problems/</link>
-          <guid>https://lexurr.ir/posts/concurrency-problems/</guid>
-          <description xml:base="https://lexurr.ir/posts/concurrency-problems/"></description>
+          <link>https://lexurr.ir/posts/golang-generics/</link>
+          <guid>https://lexurr.ir/posts/golang-generics/</guid>
+          <description xml:base="https://lexurr.ir/posts/golang-generics/">&lt;p&gt;One of the significant limitations encountered in &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;go.dev&#x2F;&quot;&gt;Go&lt;&#x2F;a&gt; prior to version 1.18 is the inability to create functions that can operate seamlessly across multiple input and output data types. This restriction undermines the language&#x27;s capacity to facilitate code abstraction and maintainability, as developers are compelled to duplicate function implementations for each distinct data type they wish to handle. Consequently, this not only introduces redundancy and increases the likelihood of errors but also inhibits the creation of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;go.dev&#x2F;doc&#x2F;tutorial&#x2F;generics&quot;&gt;generic&lt;&#x2F;a&gt; solutions that can adapt to varying data structures. As a result, the absence of generics in Go prior to version 1.18 imposes considerable constraints on developers, impeding their ability to write concise, efficient, and adaptable code.&lt;&#x2F;p&gt;
+</description>
       </item>
       <item>
           <title>Docker for developers</title>
