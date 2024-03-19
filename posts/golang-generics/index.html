@@ -42,7 +42,26 @@
 </span><span style=color:#fa5c4b>func </span><span style=color:#fdf4c1>Add</span><span>[</span><span style=color:#fdf4c1>T int </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>float64 </span><span style=color:#fe8019>| </span><span style=color:#fdf4c1>string</span><span>](</span><span style=color:#fdf4c1>first</span><span>, </span><span style=color:#fdf4c1>second T</span><span>) </span><span style=color:#fdf4c1>T </span><span>{
 </span><span>	</span><span style=color:#fa5c4b>return </span><span style=color:#fdf4c1>first </span><span style=color:#fe8019>+ </span><span style=color:#fdf4c1>second
 </span><span>}
-</span></code></pre><p>After the function name, we should introduce a new type (here 'T') and specify the types that can be used for 'T'. We can create multiple generic types if needed.<p>If the number of supported types becomes extensive and it becomes unwieldy to list them all on one line, we can use an interface to represent those types.<pre class=language-go data-lang=go style=background:#282828;color:#fdf4c1aa><code class=language-go data-lang=go><span style=color:#fa5c4b>package </span><span style=color:#fdf4c1>main
+</span></code></pre><p>Or<pre class=language-go data-lang=go style=background:#282828;color:#fdf4c1aa><code class=language-go data-lang=go><span style=color:#fa5c4b>package </span><span style=color:#fdf4c1>main
+</span><span>
+</span><span style=color:#fa5c4b>import </span><span style=color:#b8bb26>"fmt"
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#8ec07c>main</span><span>() {
+</span><span>	</span><span style=font-style:italic;color:#928374>// You can omit [int] after the name because the type can be inferred from the input.
+</span><span>	</span><span style=color:#fdf4c1>Print</span><span>[</span><span style=color:#fdf4c1>int</span><span>]([]</span><span style=color:#fabd2f>int</span><span>{</span><span style=color:#d3869b>1</span><span>, </span><span style=color:#d3869b>2</span><span>, </span><span style=color:#d3869b>3</span><span>, </span><span style=color:#d3869b>4</span><span>, </span><span style=color:#d3869b>5</span><span>})
+</span><span>
+</span><span>	</span><span style=color:#fdf4c1>Print</span><span>([]</span><span style=color:#fabd2f>string</span><span>{
+</span><span>		</span><span style=color:#b8bb26>"hello"</span><span>,
+</span><span>		</span><span style=color:#b8bb26>"bye"</span><span>,
+</span><span>	})
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#fdf4c1>Print</span><span>[</span><span style=color:#fdf4c1>T any</span><span>](</span><span style=color:#fdf4c1>slice </span><span>[]</span><span style=color:#fa5c4b>T</span><span>) {
+</span><span>	</span><span style=color:#fa5c4b>for </span><span style=color:#fdf4c1>_</span><span>, </span><span style=color:#fdf4c1>value </span><span style=color:#fe8019>:= </span><span style=color:#fa5c4b>range </span><span style=color:#fdf4c1>slice </span><span>{
+</span><span>		</span><span style=color:#fdf4c1>fmt</span><span>.</span><span style=color:#fdf4c1>Printf</span><span>(</span><span style=color:#b8bb26>"</span><span style=color:#fdf4c1>%v</span><span style=color:#b8bb26>\n"</span><span>, </span><span style=color:#fdf4c1>value</span><span>)
+</span><span>	}
+</span><span>}
+</span></code></pre><p>After the function name, we should introduce a new type (here <code>T</code>) and specify the types that can be used for <code>T</code>. We can create multiple generic types if needed.<p>If the number of supported types becomes extensive and it becomes unwieldy to list them all on one line, we can use an interface to represent those types.<pre class=language-go data-lang=go style=background:#282828;color:#fdf4c1aa><code class=language-go data-lang=go><span style=color:#fa5c4b>package </span><span style=color:#fdf4c1>main
 </span><span>
 </span><span style=color:#fa5c4b>func </span><span style=color:#8ec07c>main</span><span>() {
 </span><span>
@@ -74,4 +93,58 @@
 </span><span style=color:#fa5c4b>func </span><span style=color:#fdf4c1>Add</span><span>[</span><span style=color:#fdf4c1>T Addable</span><span>](</span><span style=color:#fdf4c1>first</span><span>, </span><span style=color:#fdf4c1>second T</span><span>) </span><span style=color:#fdf4c1>T </span><span>{
 </span><span>	</span><span style=color:#fa5c4b>return </span><span style=color:#fdf4c1>first </span><span style=color:#fe8019>+ </span><span style=color:#fdf4c1>second
 </span><span>}
-</span></code></pre></article></main><footer><nav><a href=/>Home</a> ⬡ <a href=/posts>Posts</a> ⬡ <a href=/tags>Tags</a> ⬡ <a href=/contact>Contact</a></nav><p>© 2024 Ali Ahmadi ⬡ <a href=https://github.com/AliiAhmadi>Github</a></footer>
+</span></code></pre><p>Also, we can employ generics in types besides functions:<pre class=language-go data-lang=go style=background:#282828;color:#fdf4c1aa><code class=language-go data-lang=go><span style=color:#fa5c4b>package </span><span style=color:#fdf4c1>main
+</span><span>
+</span><span style=color:#fa5c4b>type </span><span style=color:#8ec07c>List</span><span>[</span><span style=color:#fdf4c1>T any</span><span>] </span><span style=color:#fa5c4b>struct </span><span>{
+</span><span>	</span><span style=color:#fdf4c1>next  </span><span style=color:#fe8019>*</span><span style=color:#fa5c4b>List</span><span>[</span><span style=color:#fdf4c1>T</span><span>]
+</span><span>	</span><span style=color:#fdf4c1>value </span><span style=color:#fa5c4b>T
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#fdf4c1>NewList</span><span>[</span><span style=color:#fdf4c1>T any</span><span>]() </span><span style=color:#fe8019>*</span><span style=color:#fdf4c1>List</span><span>[</span><span style=color:#fdf4c1>T</span><span>] {
+</span><span>	</span><span style=color:#fa5c4b>return </span><span style=color:#fe8019>&</span><span style=color:#fdf4c1>List</span><span>[</span><span style=color:#fdf4c1>T</span><span>]{}
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#8ec07c>main</span><span>() {
+</span><span>	</span><span style=color:#fdf4c1>l </span><span style=color:#fe8019>:= </span><span style=color:#fdf4c1>NewList</span><span>[</span><span style=color:#fdf4c1>string</span><span>]()
+</span><span>}
+</span></code></pre><p>Here, <code>any</code> signifies any type from built-in or custom types that you can use for the type.<p>You may encounter <code>~</code> preceding each type in some interfaces, as demonstrated below:<pre class=language-go data-lang=go style=background:#282828;color:#fdf4c1aa><code class=language-go data-lang=go><span style=color:#fa5c4b>type </span><span style=color:#8ec07c>number </span><span style=color:#fa5c4b>interface </span><span>{
+</span><span>	~</span><span style=color:#fdf4c1>int </span><span style=color:#fe8019>|</span><span> ~</span><span style=color:#fdf4c1>uint </span><span style=color:#fe8019>|
+</span><span>		~</span><span style=color:#fdf4c1>int8 </span><span style=color:#fe8019>|</span><span> ~</span><span style=color:#fdf4c1>uint8 </span><span style=color:#fe8019>|
+</span><span>		~</span><span style=color:#fdf4c1>int16 </span><span style=color:#fe8019>|</span><span> ~</span><span style=color:#fdf4c1>uint16 </span><span style=color:#fe8019>|
+</span><span>		~</span><span style=color:#fdf4c1>int32 </span><span style=color:#fe8019>|</span><span> ~</span><span style=color:#fdf4c1>uint32 </span><span style=color:#fe8019>|
+</span><span>		~</span><span style=color:#fdf4c1>int64 </span><span style=color:#fe8019>|</span><span> ~</span><span style=color:#fdf4c1>uint64 </span><span style=color:#fe8019>|
+</span><span>		~</span><span style=color:#fdf4c1>float32 </span><span style=color:#fe8019>|</span><span> ~</span><span style=color:#fabd2f>float64
+</span><span>}
+</span></code></pre><p>What does that mean? If you're familiar with Golang, you may know that we can declare a new type from another type like this:<pre class=language-go data-lang=go style=background:#282828;color:#fdf4c1aa><code class=language-go data-lang=go><span style=color:#fa5c4b>package </span><span style=color:#fdf4c1>main
+</span><span>
+</span><span style=color:#fa5c4b>import </span><span style=color:#b8bb26>"fmt"
+</span><span>
+</span><span style=font-style:italic;color:#928374>// declare a new type from int
+</span><span style=color:#fa5c4b>type </span><span style=color:#8ec07c>X </span><span style=color:#fabd2f>int
+</span><span>
+</span><span style=color:#fa5c4b>type </span><span style=color:#8ec07c>Int_1 </span><span style=color:#fa5c4b>interface </span><span>{
+</span><span>	</span><span style=color:#fabd2f>int
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>type </span><span style=color:#8ec07c>Int_2 </span><span style=color:#fa5c4b>interface </span><span>{
+</span><span>	~</span><span style=color:#fabd2f>int
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#fdf4c1>CheckAccept1</span><span>[</span><span style=color:#fdf4c1>T Int_1</span><span>](</span><span style=color:#fdf4c1>value T</span><span>) {
+</span><span>	</span><span style=color:#fdf4c1>fmt</span><span>.</span><span style=color:#fdf4c1>Printf</span><span>(</span><span style=color:#b8bb26>"accept </span><span style=color:#fdf4c1>%v</span><span style=color:#b8bb26>\n"</span><span>, </span><span style=color:#fdf4c1>value</span><span>)
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#fdf4c1>CheckAccept2</span><span>[</span><span style=color:#fdf4c1>T Int_2</span><span>](</span><span style=color:#fdf4c1>value T</span><span>) {
+</span><span>	</span><span style=color:#fdf4c1>fmt</span><span>.</span><span style=color:#fdf4c1>Printf</span><span>(</span><span style=color:#b8bb26>"accept </span><span style=color:#fdf4c1>%v</span><span style=color:#b8bb26>\n"</span><span>, </span><span style=color:#fdf4c1>value</span><span>)
+</span><span>}
+</span><span>
+</span><span style=color:#fa5c4b>func </span><span style=color:#8ec07c>main</span><span>() {
+</span><span>	</span><span style=color:#fa5c4b>var </span><span style=color:#fdf4c1>y </span><span style=color:#fa5c4b>X
+</span><span>
+</span><span>	</span><span style=font-style:italic;color:#928374>// Error - X does not satisfy Int_1
+</span><span>	</span><span style=color:#fdf4c1>CheckAccept1</span><span>[</span><span style=color:#fdf4c1>X</span><span>](</span><span style=color:#fdf4c1>y</span><span>)
+</span><span>
+</span><span>	</span><span style=font-style:italic;color:#928374>// Ok
+</span><span>	</span><span style=color:#fdf4c1>CheckAccept2</span><span>[</span><span style=color:#fdf4c1>X</span><span>](</span><span style=color:#fdf4c1>y</span><span>)
+</span><span>}
+</span></code></pre><p>It means that if you use <code>~</code> before a type in generics, you can use that type and other types declared based on that type. However, without it, you will encounter an error.<p>It's all about generics. Now you know everything related to generics in Golang. Contrary to their name, generics are quite simple and don't require much explanation.<p>Thanks for reading.😀</article></main><footer><nav><a href=/>Home</a> ⬡ <a href=/posts>Posts</a> ⬡ <a href=/tags>Tags</a> ⬡ <a href=/contact>Contact</a></nav><p>© 2024 Ali Ahmadi ⬡ <a href=https://github.com/AliiAhmadi>Github</a></footer>
